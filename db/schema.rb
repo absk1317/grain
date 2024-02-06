@@ -18,7 +18,7 @@ ActiveRecord::Schema[7.1].define(version: 20_240_206_204_013) do
 
   # Custom types defined in this database.
   # Note that some types may not work with other database engines. Be careful if changing database.
-  create_enum 'item_type', %w[Product Component]
+  create_enum 'item_type', %w[product component]
 
   create_table 'item_modifier_groups', force: :cascade do |t|
     t.bigint 'item_id', null: false
@@ -30,7 +30,7 @@ ActiveRecord::Schema[7.1].define(version: 20_240_206_204_013) do
   end
 
   create_table 'items', force: :cascade do |t|
-    t.enum 'item_type', default: 'Product', null: false, enum_type: 'item_type'
+    t.enum 'item_type', default: 'product', null: false, enum_type: 'item_type'
     t.string 'identifier', null: false
     t.string 'label', null: false
     t.string 'description', null: false
@@ -77,8 +77,8 @@ ActiveRecord::Schema[7.1].define(version: 20_240_206_204_013) do
     t.integer 'display_order', default: 0, null: false
     t.integer 'display_quantity', default: 0, null: false
     t.decimal 'price_override', precision: 10, scale: 2, default: '0.0', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+    t.datetime 'created_at', default: -> { 'CURRENT_TIMESTAMP' }, null: false
+    t.datetime 'updated_at', default: -> { 'CURRENT_TIMESTAMP' }, null: false
     t.index ['item_id'], name: 'index_modifiers_on_item_id'
     t.index ['modifier_group_id'], name: 'index_modifiers_on_modifier_group_id'
   end

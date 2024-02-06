@@ -23,7 +23,7 @@ end
 # Table name: items
 #
 #  id          :bigint           not null, primary key
-#  item_type   :enum             default("Product"), not null
+#  item_type   :enum             default("product"), not null
 #  identifier  :string           not null
 #  label       :string           not null
 #  description :string           not null

@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class Section < ApplicationRecord
+  has_many :menu_sections, dependent: :destroy, inverse_of: :section
+  has_many :menus, through: :menu_sections
+
+  validates :identifier, :label, :description, presence: true
 end
 
 # == Schema Information

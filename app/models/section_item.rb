@@ -1,6 +1,15 @@
 # frozen_string_literal: true
 
 class SectionItem < ApplicationRecord
+  belongs_to :section, inverse_of: :section_items
+  belongs_to :item, inverse_of: :section_items
+
+  has_many :item_modifier_groups, through: :item
+  has_many :modifier_groups, through: :item_modifier_groups
+
+  validates :section_id, uniqueness: { scope: :item_id }
+  validates :display_order, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :display_order, uniqueness: { scope: :section_id }
 end
 
 # == Schema Information

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ItemModifierGroup < ApplicationRecord
+  belongs_to :item, inverse_of: :item_modifier_groups
+  belongs_to :modifier_group, inverse_of: :item_modifier_groups
 end
 
 # == Schema Information

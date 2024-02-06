@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 class Modifier < ApplicationRecord
+  belongs_to :modifier_group, inverse_of: :modifiers
+  belongs_to :item, inverse_of: :modifiers
+
+  validates :display_order, :display_quantity, :price_override, presence: true
+  validates :display_order, :display_quantity, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :price_override, numericality: { greater_than_or_equal_to: 0 }
 end
 
 # == Schema Information
