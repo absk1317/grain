@@ -8,28 +8,34 @@ module Types
       argument :id, ID, required: true, description: 'ID of the object.'
     end
 
-    field :nodes, [Types::NodeType, { null: true }], null: true,
-                                                     description: 'Fetches a list of objects given a list of IDs.' do
+    field :menu, Types::MenuType, { null: false, description: 'Fetches a menu.' } do
+      argument :id, ID, required: true, description: 'ID of the menu.'
+    end
+    field :menus, [Types::MenuType], { null: false, description: 'Fetches a list of menus.' }
+
+    field :item, Types::ItemType, { null: false, description: 'Fetches an item.' } do
+      argument :id, ID, required: true, description: 'ID of the item.'
+    end
+    field :items, [Types::ItemType], { null: false, description: 'Fetches a list of items.' }
+
+    field :section, Types::SectionType, { null: false, description: 'Fetches a section.' } do
+      argument :id, ID, required: true, description: 'ID of the section.'
+    end
+    field :sections, [Types::SectionType], { null: false, description: 'Fetches a list of sections.' }
+
+    field :nodes, [Types::NodeType, { null: true }],
+          null: true,
+          description: 'Fetches a list of objects given a list of IDs.' do
       argument :ids, [ID], required: true, description: 'IDs of the objects.'
     end
 
-    field :test_field, String, null: false,
-                               description: 'An example field added by the generator'
+    def node(id:)=context.schema.object_from_id(id, context)
+    def nodes(ids:) = ids.map { |id| context.schema.object_from_id(id, context) }
 
-    def node(id:)
-      context.schema.object_from_id(id, context)
-    end
+    def menus = Menu.all
+    def menu(id:) = Menu.find(id)
 
-    def nodes(ids:)
-      ids.map { |id| context.schema.object_from_id(id, context) }
-    end
-
-    # Add root-level fields here.
-    # They will be entry points for queries on your schema.
-
-    # TODO: remove me
-    def test_field
-      'Hello World!'
-    end
+    def items = Item.all
+    def item(id:) = Item.find(id)
   end
 end

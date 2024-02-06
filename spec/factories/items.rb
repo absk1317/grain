@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :item do
-    item_type { 'Product' }
+    item_type { 'product' }
     identifier { Faker::Lorem.unique.word }
     label { Faker::Lorem.unique.word }
     description { Faker::Lorem.unique.word }
@@ -28,7 +28,6 @@ end
 #  label       :string           not null
 #  description :string           not null
 #  price       :decimal(10, 2)   not null
-#  deleted_at  :datetime
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #

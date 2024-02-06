@@ -35,7 +35,6 @@ ActiveRecord::Schema[7.1].define(version: 20_240_206_204_013) do
     t.string 'label', null: false
     t.string 'description', null: false
     t.decimal 'price', precision: 10, scale: 2, null: false
-    t.datetime 'deleted_at'
     t.datetime 'created_at', default: -> { 'CURRENT_TIMESTAMP' }, null: false
     t.datetime 'updated_at', default: -> { 'CURRENT_TIMESTAMP' }, null: false
   end
@@ -57,7 +56,6 @@ ActiveRecord::Schema[7.1].define(version: 20_240_206_204_013) do
     t.string 'identifier', null: false
     t.string 'label', null: false
     t.string 'state', null: false
-    t.datetime 'deleted_at'
     t.datetime 'created_at', default: -> { 'CURRENT_TIMESTAMP' }, null: false
     t.datetime 'updated_at', default: -> { 'CURRENT_TIMESTAMP' }, null: false
   end

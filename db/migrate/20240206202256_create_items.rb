@@ -10,7 +10,6 @@ class CreateItems < ActiveRecord::Migration[7.1]
       t.string :label, null: false
       t.string :description, null: false
       t.decimal :price, precision: 10, scale: 2, null: false
-      t.datetime :deleted_at
 
       t.timestamps null: false, default: -> { 'CURRENT_TIMESTAMP' }
     end
