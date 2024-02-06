@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_06_203118) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_06_203348) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -47,6 +47,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_06_203118) do
     t.string "label", null: false
     t.string "state", null: false
     t.datetime "deleted_at"
+    t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+  end
+
+  create_table "modifier_groups", force: :cascade do |t|
+    t.string "identifier", null: false
+    t.string "label", null: false
+    t.integer "min_selections", default: 0, null: false
+    t.integer "max_selections", default: 1, null: false
     t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
   end
