@@ -5,6 +5,7 @@ class Item < ApplicationRecord
 
   has_many :item_modifier_groups, dependent: :destroy, inverse_of: :item
   has_many :modifier_groups, through: :item_modifier_groups
+  has_many :modifiers, inverse_of: :item, dependent: :destroy
 
   has_many :section_items, dependent: :destroy, inverse_of: :item
   has_many :sections, through: :section_items
