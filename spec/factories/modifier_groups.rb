@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :modifier_group do
     identifier { Faker::Lorem.unique.word }
