@@ -111,6 +111,7 @@ GEM
       i18n (>= 1.8.11, < 2)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    graphql (2.2.7)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     io-console (0.7.2)
@@ -312,6 +313,7 @@ DEPENDENCIES
   database_cleaner
   factory_bot_rails
   faker
+  graphql
   json-schema
   pg (~> 1.1)
   pry
