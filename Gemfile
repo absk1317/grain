@@ -28,6 +28,10 @@ gem 'tzinfo-data', platforms: %i[windows jruby]
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
 # gem "rack-cors"
 
+group :development do
+  gem 'annotate'
+end
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'amazing_print'
