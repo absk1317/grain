@@ -13,6 +13,7 @@ AllCops:
     - "node_modules/**/*"
     - "tmp/**/*"
     - "vendor/**/*"
+    - 'db/schema.rb'
 
 Layout/LineLength:
   Max: 120
