@@ -41,6 +41,16 @@
         },
         {
           "kind": "SCALAR",
+          "name": "ISO8601Date",
+          "description": "An ISO 8601-encoded date",
+          "interfaces": null,
+          "possibleTypes": null,
+          "fields": null,
+          "inputFields": null,
+          "enumValues": null
+        },
+        {
+          "kind": "SCALAR",
           "name": "Int",
           "description": "Represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.",
           "interfaces": null,
@@ -206,6 +216,24 @@
           "possibleTypes": null,
           "fields": [
             {
+              "name": "endDate",
+              "description": "End date of the menu",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ISO8601Date",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null,
+              "args": [
+
+              ]
+            },
+            {
               "name": "id",
               "description": "ID of the menu",
               "type": {
@@ -303,6 +331,24 @@
                       "ofType": null
                     }
                   }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null,
+              "args": [
+
+              ]
+            },
+            {
+              "name": "startDate",
+              "description": "Start date of the menu",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ISO8601Date",
+                  "ofType": null
                 }
               },
               "isDeprecated": false,

@@ -16,6 +16,8 @@ end
 #  identifier :string           not null
 #  label      :string           not null
 #  state      :string           not null
+#  start_date :date             not null
+#  end_date   :date             not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

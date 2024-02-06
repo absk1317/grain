@@ -56,6 +56,8 @@ ActiveRecord::Schema[7.1].define(version: 20_240_206_204_013) do
     t.string 'identifier', null: false
     t.string 'label', null: false
     t.string 'state', null: false
+    t.date 'start_date', null: false
+    t.date 'end_date', null: false
     t.datetime 'created_at', default: -> { 'CURRENT_TIMESTAMP' }, null: false
     t.datetime 'updated_at', default: -> { 'CURRENT_TIMESTAMP' }, null: false
   end
