@@ -1,0 +1,28 @@
+require:
+- rubocop-rails # https://rubygems.org/gems/rubocop-rails
+- rubocop-rspec # https://rubygems.org/gems/rubocop-rspec
+- rubocop-performance
+- rubocop-graphql # https://rubygems.org/gems/rubocop-graphql
+
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.2.2
+  Exclude:
+    - "config/**/*"
+    - "bin/**/*"
+    - "node_modules/**/*"
+    - "tmp/**/*"
+    - "vendor/**/*"
+
+Layout/LineLength:
+  Max: 120
+  Exclude:
+    - "spec/**/*"
+    - "db/**/*"
+  AllowedPatterns: ## Skip all lines starting with #
+    - "^#"
+
+Style/Documentation:
+  Enabled: false
+Bundler/OrderedGems:
+  Enabled: false
