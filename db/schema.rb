@@ -10,9 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_06_201921) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_06_202256) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  # Custom types defined in this database.
+  # Note that some types may not work with other database engines. Be careful if changing database.
+  create_enum "item_type", ["Product", "Component"]
+
+  create_table "items", force: :cascade do |t|
+    t.enum "item_type", default: "Product", null: false, enum_type: "item_type"
+    t.string "identifier", null: false
+    t.string "label", null: false
+    t.string "description", null: false
+    t.decimal "price", precision: 10, scale: 2, null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+  end
 
   create_table "menu_sections", force: :cascade do |t|
     t.bigint "menu_id", null: false
