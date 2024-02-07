@@ -11,6 +11,8 @@ Haven't added soft delete functionality
 Unit tests are added for the models and GraphQL queries, with 100% coverage.
 Have added brakeman and rubocop for security and linting checks. (The checks run on every push to the repository on Github)
 
+No N+1 queries!
+
 From what I understand, the menu is the top level entity. It has sections. Each section has section items. Each section item has items. Each item has item modifier groups. Each item modifier group has modifier groups. Each modifier group has modifiers:
 
 menu -> sections -> section items -> items -> item modifier groups -> modifier groups -> modifiers
@@ -18,7 +20,7 @@ menu -> sections -> section items -> items -> item modifier groups -> modifier g
 Below query can be used to get the menu with all the associations:
 
 ```graphql
-query AllMenuItems {
+{
   menu(id: 1) {
     id
     startDate
@@ -28,6 +30,8 @@ query AllMenuItems {
       description
       items {
         id
+        label
+        itemType
         modifierGroups {
           id
           label
@@ -37,6 +41,10 @@ query AllMenuItems {
             id
             displayOrder
             defaultQuantity
+            item {
+              id
+              label
+            }
           }
         }
       }
