@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class GraphqlController < ApplicationController
+  around_action :auto_eager_load
+
   # If accessing from outside this domain, nullify the session
   # This allows for outside API access while preventing CSRF attacks,
   # but you'll have to authenticate your user separately
@@ -53,4 +55,6 @@ class GraphqlController < ApplicationController
     json = { errors: [{ message: err.message, backtrace: err.backtrace }], data: {} }
     render json:, status: :internal_server_error
   end
+
+  def auto_eager_load(&) = Goldiloader.enabled(&)
 end
