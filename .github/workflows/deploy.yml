@@ -14,6 +14,11 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Set up SSH connection
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
@@ -24,11 +29,6 @@ jobs:
         gem install bundler
         bundle install
 
-    - name: Set up SSH connection
-      uses: webfactory/ssh-agent@v0.5.3
-      with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
     - name: Deploy to Production
       env:
         DOMAIN: ${{ secrets.DEPLOY_SERVER }}
@@ -37,8 +37,4 @@ jobs:
         BRANCH: main
       run: |
         ssh -o StrictHostKeyChecking=no $DEPLOY_USER@$DOMAIN \
-          'source ~/.bash_profile || source ~/.profile || source ~/.bashrc; \
-          RAILS_ENV=production \
-          DOMAIN=${DOMAIN} \
-          BRANCH=${BRANCH} \
-          bundle exec mina deploy'
+          'RAILS_ENV=production DOMAIN=${DOMAIN} BRANCH=${BRANCH} bundle exec mina deploy'
