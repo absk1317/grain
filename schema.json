@@ -415,8 +415,8 @@
           "possibleTypes": null,
           "fields": [
             {
-              "name": "displayOrder",
-              "description": "Display order of the modifier",
+              "name": "defaultQuantity",
+              "description": "Display quantity of the modifier",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -433,8 +433,8 @@
               ]
             },
             {
-              "name": "displayQuantity",
-              "description": "Display quantity of the modifier",
+              "name": "displayOrder",
+              "description": "Display order of the modifier",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,

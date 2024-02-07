@@ -79,7 +79,7 @@ ActiveRecord::Schema[7.1].define(version: 20_240_207_014_739) do
     t.bigint 'modifier_group_id', null: false
     t.bigint 'item_id', null: false
     t.integer 'display_order', default: 0, null: false
-    t.integer 'display_quantity', default: 0, null: false
+    t.integer 'default_quantity', default: 0, null: false
     t.decimal 'price_override', precision: 10, scale: 2, default: '0.0', null: false
     t.datetime 'created_at', default: -> { 'CURRENT_TIMESTAMP' }, null: false
     t.datetime 'updated_at', default: -> { 'CURRENT_TIMESTAMP' }, null: false
