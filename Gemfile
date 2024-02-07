@@ -32,7 +32,6 @@ end
 group :test do
   gem 'database_cleaner'
   gem 'json-schema'
-  gem 'rspec-sidekiq'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
 end

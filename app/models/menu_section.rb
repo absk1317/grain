@@ -4,7 +4,7 @@ class MenuSection < ApplicationRecord
   belongs_to :menu, inverse_of: :menu_sections
   belongs_to :section, inverse_of: :menu_sections
 
-  has_many :section_items, dependent: :destroy, inverse_of: :menu_section
+  has_many :section_items, through: :section
   has_many :items, through: :section_items
 
   validates :section_id, uniqueness: { scope: :menu_id }

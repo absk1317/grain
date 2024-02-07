@@ -37,5 +37,8 @@ module Types
 
     def items = Item.all
     def item(id:) = Item.find(id)
+
+    def sections = Section.all
+    def section(id:) = Section.find(id)
   end
 end
