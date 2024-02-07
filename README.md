@@ -53,7 +53,7 @@ The project is set up with Mina for deployment. The deployment configuration is 
 RAILS_ENV=staging DOMAIN=IP_HERE BRANCH=BRANCH_HERE mina deploy
 ```
 
-For the time being, I've avoided setting up CI/CD pipeline. But it can be set up using Github Actions or Gitlab CI/CD.
+Everytime a new commit is pushed to the main branch of the repository, the project is automatically deployed.
 
 Backup:
 
