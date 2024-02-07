@@ -35,7 +35,8 @@ jobs:
         BRANCH: main
       run: |
         ssh -o StrictHostKeyChecking=no $DEPLOY_USER@$DOMAIN \
-          "RAILS_ENV=production \
+          'source ~/.bash_profile || source ~/.profile || source ~/.bashrc; \
+          RAILS_ENV=production \
           DOMAIN=${DOMAIN} \
           BRANCH=${BRANCH} \
-          bundle exec mina deploy"
+          bundle exec mina deploy'
