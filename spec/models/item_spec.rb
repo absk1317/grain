@@ -26,7 +26,7 @@ RSpec.describe Item do
   end
 
   describe 'indexes' do
-    xit { is_expected.to have_db_index(:item_type) }
-    xit { is_expected.to have_db_index(:identifier) }
+    it { is_expected.to have_db_index(:item_type) }
+    it { is_expected.to have_db_index('lower((identifier)::text)').unique }
   end
 end

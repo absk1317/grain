@@ -21,3 +21,9 @@ end
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
+# Indexes
+#
+#  index_menus_on_lower_identifier         (lower((identifier)::text)) UNIQUE
+#  index_menus_on_start_date_and_end_date  (start_date,end_date)
+#  index_menus_on_state                    (state)
+#

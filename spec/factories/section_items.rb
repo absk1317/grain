@@ -22,9 +22,7 @@ end
 # Indexes
 #
 #  index_section_items_on_display_order_and_section_id  (display_order,section_id) UNIQUE
-#  index_section_items_on_item_id                       (item_id)
 #  index_section_items_on_item_id_and_section_id        (item_id,section_id) UNIQUE
-#  index_section_items_on_section_id                    (section_id)
 #  index_section_items_on_section_id_and_item_id        (section_id,item_id) UNIQUE
 #
 # Foreign Keys

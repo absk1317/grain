@@ -17,8 +17,8 @@ end
 #
 # Indexes
 #
-#  index_item_modifier_groups_on_item_id            (item_id)
-#  index_item_modifier_groups_on_modifier_group_id  (modifier_group_id)
+#  index_item_modifier_groups_on_item_id_and_modifier_group_id  (item_id,modifier_group_id) UNIQUE
+#  index_item_modifier_groups_on_modifier_group_id              (modifier_group_id)
 #
 # Foreign Keys
 #

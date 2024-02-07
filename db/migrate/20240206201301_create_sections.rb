@@ -8,6 +8,7 @@ class CreateSections < ActiveRecord::Migration[7.1]
       t.string :description, null: false
 
       t.timestamps null: false, default: -> { 'CURRENT_TIMESTAMP' }
+      t.index 'lower(identifier)', unique: true
     end
   end
 end

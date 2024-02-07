@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 20_240_206_204_013) do
+ActiveRecord::Schema[7.1].define(version: 20_240_207_014_739) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -25,7 +25,7 @@ ActiveRecord::Schema[7.1].define(version: 20_240_206_204_013) do
     t.bigint 'modifier_group_id', null: false
     t.datetime 'created_at', default: -> { 'CURRENT_TIMESTAMP' }, null: false
     t.datetime 'updated_at', default: -> { 'CURRENT_TIMESTAMP' }, null: false
-    t.index ['item_id'], name: 'index_item_modifier_groups_on_item_id'
+    t.index %w[item_id modifier_group_id], name: 'index_item_modifier_groups_on_item_id_and_modifier_group_id', unique: true
     t.index ['modifier_group_id'], name: 'index_item_modifier_groups_on_modifier_group_id'
   end
 
@@ -37,6 +37,8 @@ ActiveRecord::Schema[7.1].define(version: 20_240_206_204_013) do
     t.decimal 'price', precision: 10, scale: 2, null: false
     t.datetime 'created_at', default: -> { 'CURRENT_TIMESTAMP' }, null: false
     t.datetime 'updated_at', default: -> { 'CURRENT_TIMESTAMP' }, null: false
+    t.index 'lower((identifier)::text)', name: 'index_items_on_lower_identifier', unique: true
+    t.index ['item_type'], name: 'index_items_on_item_type'
   end
 
   create_table 'menu_sections', force: :cascade do |t|
@@ -47,9 +49,7 @@ ActiveRecord::Schema[7.1].define(version: 20_240_206_204_013) do
     t.datetime 'updated_at', default: -> { 'CURRENT_TIMESTAMP' }, null: false
     t.index %w[display_order menu_id], name: 'index_menu_sections_on_display_order_and_menu_id', unique: true
     t.index %w[menu_id section_id], name: 'index_menu_sections_on_menu_id_and_section_id', unique: true
-    t.index ['menu_id'], name: 'index_menu_sections_on_menu_id'
     t.index %w[section_id menu_id], name: 'index_menu_sections_on_section_id_and_menu_id', unique: true
-    t.index ['section_id'], name: 'index_menu_sections_on_section_id'
   end
 
   create_table 'menus', force: :cascade do |t|
@@ -60,6 +60,9 @@ ActiveRecord::Schema[7.1].define(version: 20_240_206_204_013) do
     t.date 'end_date', null: false
     t.datetime 'created_at', default: -> { 'CURRENT_TIMESTAMP' }, null: false
     t.datetime 'updated_at', default: -> { 'CURRENT_TIMESTAMP' }, null: false
+    t.index 'lower((identifier)::text)', name: 'index_menus_on_lower_identifier', unique: true
+    t.index %w[start_date end_date], name: 'index_menus_on_start_date_and_end_date'
+    t.index ['state'], name: 'index_menus_on_state'
   end
 
   create_table 'modifier_groups', force: :cascade do |t|
@@ -69,6 +72,7 @@ ActiveRecord::Schema[7.1].define(version: 20_240_206_204_013) do
     t.integer 'max_selections', default: 1, null: false
     t.datetime 'created_at', default: -> { 'CURRENT_TIMESTAMP' }, null: false
     t.datetime 'updated_at', default: -> { 'CURRENT_TIMESTAMP' }, null: false
+    t.index 'lower((identifier)::text)', name: 'index_modifier_groups_on_lower_identifier', unique: true
   end
 
   create_table 'modifiers', force: :cascade do |t|
@@ -91,9 +95,7 @@ ActiveRecord::Schema[7.1].define(version: 20_240_206_204_013) do
     t.datetime 'updated_at', default: -> { 'CURRENT_TIMESTAMP' }, null: false
     t.index %w[display_order section_id], name: 'index_section_items_on_display_order_and_section_id', unique: true
     t.index %w[item_id section_id], name: 'index_section_items_on_item_id_and_section_id', unique: true
-    t.index ['item_id'], name: 'index_section_items_on_item_id'
     t.index %w[section_id item_id], name: 'index_section_items_on_section_id_and_item_id', unique: true
-    t.index ['section_id'], name: 'index_section_items_on_section_id'
   end
 
   create_table 'sections', force: :cascade do |t|
@@ -102,6 +104,7 @@ ActiveRecord::Schema[7.1].define(version: 20_240_206_204_013) do
     t.string 'description', null: false
     t.datetime 'created_at', default: -> { 'CURRENT_TIMESTAMP' }, null: false
     t.datetime 'updated_at', default: -> { 'CURRENT_TIMESTAMP' }, null: false
+    t.index 'lower((identifier)::text)', name: 'index_sections_on_lower_identifier', unique: true
   end
 
   add_foreign_key 'item_modifier_groups', 'items'

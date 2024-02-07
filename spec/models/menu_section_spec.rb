@@ -21,9 +21,7 @@ RSpec.describe MenuSection do
 
   describe 'indexes' do
     it { is_expected.to have_db_index(%i[display_order menu_id]).unique }
-    it { is_expected.to have_db_index(:menu_id) }
     it { is_expected.to have_db_index(%i[menu_id section_id]).unique }
-    it { is_expected.to have_db_index(:section_id) }
     it { is_expected.to have_db_index(%i[section_id menu_id]).unique }
   end
 end

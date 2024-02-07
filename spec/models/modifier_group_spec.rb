@@ -18,6 +18,6 @@ RSpec.describe ModifierGroup do
   end
 
   describe 'indexes' do
-    xit { is_expected.to have_db_index(:identifier) }
+    it { is_expected.to have_db_index('lower((identifier)::text)').unique }
   end
 end

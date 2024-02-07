@@ -9,7 +9,7 @@ RSpec.describe ItemModifierGroup do
   end
 
   describe 'indexes' do
-    it { is_expected.to have_db_index(:item_id) }
+    it { is_expected.to have_db_index(%i[item_id modifier_group_id]).unique }
     it { is_expected.to have_db_index(:modifier_group_id) }
   end
 end

@@ -31,3 +31,8 @@ end
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
+# Indexes
+#
+#  index_items_on_item_type         (item_type)
+#  index_items_on_lower_identifier  (lower((identifier)::text)) UNIQUE
+#

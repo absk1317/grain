@@ -19,3 +19,7 @@ end
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
+# Indexes
+#
+#  index_sections_on_lower_identifier  (lower((identifier)::text)) UNIQUE
+#
