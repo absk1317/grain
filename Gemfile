@@ -11,6 +11,21 @@ gem 'tzinfo-data', platforms: %i[windows jruby]
 gem 'graphql'
 gem 'goldiloader'
 
+# performance and monitoring
+gem 'lograge'
+gem 'logstash-event'
+gem 'logstash-logger'
+gem 'sentry-ruby'
+gem 'sentry-rails'
+gem 'newrelic_rpm'
+
+# caching
+gem 'redis'
+gem 'identity_cache'
+gem 'cityhash' # for faster hashing
+gem 'dalli'
+
+# for seed data
 gem 'factory_bot_rails'
 gem 'faker'
 
@@ -24,6 +39,7 @@ group :development, :test do
   gem 'amazing_print'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'brakeman'
+  gem 'bullet'
   gem 'pry'
   gem 'rspec-rails'
   gem 'rubocop'
