@@ -36,7 +36,7 @@ query AllMenuItems {
           modifiers {
             id
             displayOrder
-            displayQuantity
+            defaultQuantity
           }
         }
       }

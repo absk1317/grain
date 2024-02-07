@@ -24,7 +24,7 @@ RSpec.describe 'FullMenuQuery', type: :graphql do
                   modifiers {
                     id
                     displayOrder
-                    displayQuantity
+                    defaultQuantity
                   }
                 }
               }

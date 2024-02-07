@@ -10,10 +10,10 @@ RSpec.describe Modifier do
 
   describe 'validations' do
     it { is_expected.to validate_presence_of(:display_order) }
-    it { is_expected.to validate_presence_of(:display_quantity) }
+    it { is_expected.to validate_presence_of(:default_quantity) }
     it { is_expected.to validate_presence_of(:price_override) }
     it { is_expected.to validate_numericality_of(:display_order).only_integer.is_greater_than_or_equal_to(0) }
-    it { is_expected.to validate_numericality_of(:display_quantity).only_integer.is_greater_than_or_equal_to(0) }
+    it { is_expected.to validate_numericality_of(:default_quantity).only_integer.is_greater_than_or_equal_to(0) }
     it { is_expected.to validate_numericality_of(:price_override).is_greater_than_or_equal_to(0) }
   end
 

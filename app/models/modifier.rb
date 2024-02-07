@@ -4,8 +4,8 @@ class Modifier < ApplicationRecord
   belongs_to :modifier_group, inverse_of: :modifiers
   belongs_to :item, inverse_of: :modifiers
 
-  validates :display_order, :display_quantity, :price_override, presence: true
-  validates :display_order, :display_quantity, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :display_order, :default_quantity, :price_override, presence: true
+  validates :display_order, :default_quantity, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :price_override, numericality: { greater_than_or_equal_to: 0 }
 end
 
@@ -17,7 +17,7 @@ end
 #  modifier_group_id :bigint           not null
 #  item_id           :bigint           not null
 #  display_order     :integer          default(0), not null
-#  display_quantity  :integer          default(0), not null
+#  default_quantity  :integer          default(0), not null
 #  price_override    :decimal(10, 2)   default(0.0), not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
