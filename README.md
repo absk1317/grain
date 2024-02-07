@@ -13,3 +13,33 @@ Unit tests are added for the models and GraphQL queries, with 100% coverage.
 From what I understand, the menu is the top level entity. It has sections. Each section has section items. Each section item has items. Each item has item modifier groups. Each item modifier group has modifier groups. Each modifier group has modifiers:
 
 menu -> sections -> section items -> items -> item modifier groups -> modifier groups -> modifiers
+
+Below query can be used to get the menu with all the associations:
+
+```graphql
+query AllMenuItems {
+  menu(id: 1) {
+    id
+    startDate
+    identifier
+    sections {
+      label
+      description
+      items {
+        id
+        modifierGroups {
+          id
+          label
+          minSelections
+          maxSelections
+          modifiers {
+            id
+            displayOrder
+            displayQuantity
+          }
+        }
+      }
+    }
+  }
+}
+```
