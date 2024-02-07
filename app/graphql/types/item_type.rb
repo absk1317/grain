@@ -9,6 +9,7 @@ module Types
     field :identifier, String, null: false, description: 'Identifier of the item'
     field :item_type, String, null: false, description: 'Type of the item'
     field :label, String, null: false, description: 'Label of the item'
+    field :modifier_groups, [Types::ModifierGroupType], null: false, description: 'Modifier groups of the item'
     field :modifiers, [Types::ModifierType], null: false, description: 'Modifiers of the item'
     field :price, Float, null: false, description: 'Price of the item'
   end

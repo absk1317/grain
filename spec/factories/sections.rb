@@ -2,9 +2,9 @@
 
 FactoryBot.define do
   factory :section do
-    identifier { Faker::Lorem.unique.word }
-    label { Faker::Lorem.unique.word }
-    description { Faker::Lorem.unique.word }
+    sequence(:identifier) { |n| "section-#{n}" }
+    label { Faker::Restaurant.type }
+    description { Faker::Restaurant.description }
   end
 end
 

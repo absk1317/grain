@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :modifier_group do
-    identifier { Faker::Lorem.unique.word }
-    label { Faker::Lorem.unique.word }
+    sequence(:identifier) { |n| "modifier-group-#{n}" }
+    label { Faker::Food.ingredient }
     min_selections { 0 }
     max_selections { 1 }
   end

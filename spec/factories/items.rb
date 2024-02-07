@@ -3,17 +3,17 @@
 FactoryBot.define do
   factory :item do
     item_type { 'product' }
-    identifier { Faker::Lorem.unique.word }
-    label { Faker::Lorem.unique.word }
-    description { Faker::Lorem.unique.word }
+    sequence(:identifier) { |n| "#{Faker::Food.dish}-#{n}" }
+    label { Faker::Food.dish }
+    description { Faker::Food.description }
     price { Faker::Number.decimal(l_digits: 2) }
 
     trait :product do
-      item_type { 'Product' }
+      item_type { 'product' }
     end
 
     trait :component do
-      item_type { 'Component' }
+      item_type { 'component' }
     end
   end
 end

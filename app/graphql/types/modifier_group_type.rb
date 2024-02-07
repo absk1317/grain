@@ -8,5 +8,6 @@ module Types
     field :label, String, null: false, description: 'Label of the modifier group'
     field :max_selections, Integer, null: false, description: 'Maximum number of selections'
     field :min_selections, Integer, null: false, description: 'Minimum number of selections'
+    field :modifiers, [Types::ModifierType], null: false, description: 'Modifiers of the item'
   end
 end

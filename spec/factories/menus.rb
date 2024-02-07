@@ -2,9 +2,11 @@
 
 FactoryBot.define do
   factory :menu do
-    identifier { Faker::Lorem.unique.word }
-    label { Faker::Lorem.unique.word }
+    sequence(:identifier) { |n| "menu-#{n}" }
+    label { Faker::Restaurant.name }
     state { 'active' }
+    start_date { Faker::Date.between(from: 1.year.ago, to: 1.month.ago) }
+    end_date { Faker::Date.between(from: 1.month.from_now, to: 1.year.from_now) }
   end
 end
 
