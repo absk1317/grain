@@ -11,6 +11,9 @@ gem 'tzinfo-data', platforms: %i[windows jruby]
 gem 'graphql'
 gem 'goldiloader'
 
+gem 'factory_bot_rails'
+gem 'faker'
+
 group :development do
   gem 'annotate'
   gem 'mina', require: false
@@ -21,8 +24,6 @@ group :development, :test do
   gem 'amazing_print'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'brakeman'
-  gem 'factory_bot_rails'
-  gem 'faker'
   gem 'pry'
   gem 'rspec-rails'
   gem 'rubocop'
