@@ -17,8 +17,10 @@ jobs:
       with:
         ruby-version: '3.2.2'
 
-    - name: Install Mina
-      run: gem install mina
+    - name: Install dependencies
+      run: |
+        gem install bundler
+        bundle install
 
     - name: Set up SSH connection
       uses: webfactory/ssh-agent@v0.5.3
@@ -32,4 +34,8 @@ jobs:
         RAILS_ENV: production
         BRANCH: main
       run: |
-        ssh -o StrictHostKeyChecking=no $DEPLOY_USER@$DOMAIN "RAILS_ENV=production DOMAIN=${DOMAIN} BRANCH=${BRANCH} mina deploy"
+        ssh -o StrictHostKeyChecking=no $DEPLOY_USER@$DOMAIN \
+          "RAILS_ENV=production \
+          DOMAIN=${DOMAIN} \
+          BRANCH=${BRANCH} \
+          bundle exec mina deploy"
