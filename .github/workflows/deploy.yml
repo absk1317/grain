@@ -1,0 +1,35 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.2.2'
+
+    - name: Install Mina
+      run: gem install mina
+
+    - name: Set up SSH connection
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Deploy to Production
+      env:
+        DOMAIN: ${{ secrets.DEPLOY_SERVER }}
+        DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+        RAILS_ENV: production
+        BRANCH: main
+      run: |
+        ssh -o StrictHostKeyChecking=no $DEPLOY_USER@$DOMAIN "RAILS_ENV=production DOMAIN=${DOMAIN} BRANCH=${BRANCH} mina deploy"
