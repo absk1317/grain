@@ -1,0 +1,47 @@
+name: Rspec
+
+on: [push]
+
+jobs:
+  rspec-check:
+    name: Rspec Check
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: grain_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.2.2
+
+    - name: Install dependencies
+      run: |
+        gem install bundler
+        bundle install
+
+    - name: Set up Database
+      env:
+        RAILS_ENV: test
+      run: |
+        cp config/database.ci.yml config/database.yml
+        bundle exec rake db:create db:schema:load
+
+    - name: Run Rspec
+      run: bundle exec rspec

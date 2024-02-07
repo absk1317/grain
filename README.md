@@ -2,7 +2,7 @@ The project is set up with latest version of Ruby and Rails. The database used i
 
 - Ruby version: 3.2.2
 - Rails version: 7.1.3
-- Database: Postgres
+- Database: Postgres (15 or above)
 
 The project requires minimal setup. Just run `bundle install` to install the required gems. Run `rails db:create db:migrate` to create the database and run the migrations. Run `rails db:seed` to seed the database with sample data.
 
@@ -57,13 +57,13 @@ For the time being, I've avoided setting up CI/CD pipeline. But it can be set up
 
 Backup:
 
-1.We can configure backup using `backup` gem. Detailed instructions can be found here: https://adevelopersdiary.com/automated-database-backup-with-ruby-backup-gem/
+1. We can configure backup using `backup` gem. Detailed instructions can be found here: https://adevelopersdiary.com/automated-database-backup-with-ruby-backup-gem/
 
 Logging:
 
 1. Use `lograge` gem for structured logging in JSON format.
 2. Install ELK/Zinc Observe stack on a separate server.
-3. Install filebeat/fluentd on the server to ship logs to ELK stack.
+3. Install filebeat/fluentd on the server.
 4. Configure filebeat/fluentd to ship logs to the ELK or the Zinc Observe server.
 
 Loadbalancing:
@@ -79,6 +79,18 @@ Database:
 
 1. As the application grows, we can use a managed database service like AWS RDS or Google Cloud SQL.
 2. Use PgBouncer for connection pooling.
-3. Use CloudSQL insights for database performance monitoring.
+3. Use CloudSQL/RDS insights for database performance monitoring.
 4. Use pgtune to optimize the database configuration.
 5. Segregate the database into read and write replicas.
+
+Deployment and Infrastructure:
+
+1. Provision Server
+2. Install PostgreSQL, nginx, rvm/rbenv
+3. Add new user to postgres
+4. Create new database
+5. Install ruby 3.2.2 on server
+6. Add service file for puma, enable and start
+7. Add nginx config file for app, enable and start
+8. Add DNS record for app
+9. Add SSL certificate for app
