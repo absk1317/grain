@@ -1,0 +1,27 @@
+common:
+  &default_settings
+  license_key: <%= Rails.application.credentials.new_relic_license_key %>
+  app_name: Grain
+  log_level: info
+
+test:
+  <<: *default_settings
+  monitor_mode: false
+
+staging:
+  <<: *default_settings
+  app_name: Grain (Staging)
+  license_key: <%= Rails.application.credentials.new_relic_license_key %>
+  log_level: info
+
+development:
+  <<: *default_settings
+  app_name: Grain (Development - <%= `whoami`.chomp %>)
+  license_key: <%= Rails.application.credentials.new_relic_license_key %>
+  log_level: info
+
+production:
+  <<: *default_settings
+  app_name: Grain (Production)
+  license_key: <%= Rails.application.credentials.new_relic_license_key %>
+  log_level: info
