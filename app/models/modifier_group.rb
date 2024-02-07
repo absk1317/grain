@@ -8,6 +8,16 @@ class ModifierGroup < ApplicationRecord
   validates :identifier, :label, :min_selections, :max_selections, presence: true
   validates :min_selections, :max_selections, numericality: { greater_than_or_equal_to: 0 }
   validates :min_selections, numericality: { less_than_or_equal_to: :max_selections }
+
+  def item_modifier_groups
+    RedisCache.relation_cache(key: "modifier_group_#{id}::ItemModifierGroup",
+                              klass: ItemModifierGroup) do
+      super
+    end
+  end
+
+  def modifiers = RedisCache.relation_cache(key: "modifier_group_#{id}::Modifiers", klass: Modifier) { super }
+  def items = RedisCache.relation_cache(key: "modifier_group_#{id}::Item", klass: Item) { super }
 end
 
 # == Schema Information

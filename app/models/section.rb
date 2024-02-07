@@ -7,6 +7,11 @@ class Section < ApplicationRecord
   has_many :items, through: :section_items
 
   validates :identifier, :label, :description, presence: true
+
+  def menu_sections = RedisCache.relation_cache(key: "sections_#{id}::MenuSection", klass: MenuSection) { super }
+  def menus = RedisCache.relation_cache(key: "sections_#{id}::Menu", klass: Menu) { super }
+  def section_items = RedisCache.relation_cache(key: "sections_#{id}::SectionItem", klass: SectionItem) { super }
+  def items = RedisCache.relation_cache(key: "sections_#{id}::Item", klass: Item) { super }
 end
 
 # == Schema Information

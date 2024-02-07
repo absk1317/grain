@@ -7,6 +7,8 @@ class Modifier < ApplicationRecord
   validates :display_order, :default_quantity, :price_override, presence: true
   validates :display_order, :default_quantity, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :price_override, numericality: { greater_than_or_equal_to: 0 }
+
+  def item = RedisCache.object_cache(key: "modifier_#{id}::Item", klass: Item) { super }
 end
 
 # == Schema Information

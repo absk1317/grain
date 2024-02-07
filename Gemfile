@@ -20,14 +20,14 @@ gem 'sentry-rails'
 gem 'newrelic_rpm'
 
 # caching
-gem 'redis'
-gem 'identity_cache'
-gem 'cityhash' # for faster hashing
-gem 'dalli'
+gem 'mock_redis' # using mock redis instead of redis, to avoid setting up redis in development
+gem 'connection_pool'
 
 # for seed data
 gem 'factory_bot_rails'
 gem 'faker'
+
+gem 'active_record_query_trace'
 
 group :development do
   gem 'annotate'

@@ -33,12 +33,12 @@ module Types
     def nodes(ids:) = ids.map { |id| context.schema.object_from_id(id, context) }
 
     def menus = Menu.all
-    def menu(id:) = Menu.find(id)
+    def menu(id:) = Menu.fetch(id)
 
     def items = Item.all
-    def item(id:) = Item.find(id)
+    def item(id:) = Item.fetch(id)
 
     def sections = Section.all
-    def section(id:) = Section.find(id)
+    def section(id:) = Section.fetch(id)
   end
 end
