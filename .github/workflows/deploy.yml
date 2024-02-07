@@ -32,7 +32,7 @@ jobs:
         DOMAIN: ${{ secrets.DEPLOY_SERVER }}
         DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
 
-    - name: Install dependencies
+    - name: Install dependencies and deploy
       env:
         DOMAIN: ${{ secrets.DEPLOY_SERVER }}
         DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
