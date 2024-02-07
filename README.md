@@ -9,6 +9,7 @@ The project requires minimal setup. Just run `bundle install` to install the req
 Annotations are added to the models for schema information.
 Haven't added soft delete functionality
 Unit tests are added for the models and GraphQL queries, with 100% coverage.
+Have added brakeman and rubocop for security and linting checks. (The checks run on every push to the repository on Github)
 
 From what I understand, the menu is the top level entity. It has sections. Each section has section items. Each section item has items. Each item has item modifier groups. Each item modifier group has modifier groups. Each modifier group has modifiers:
 
