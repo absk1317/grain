@@ -13,6 +13,6 @@ test:
 
 production:
   <<: *default
-  database: <%= ENV.fetch("GRAIN_DATABASE_NAME", 'grain_development') %>
+  database: <%= ENV.fetch("GRAIN_DATABASE_NAME", 'grain_production') %>
   username: <%= ENV["GRAIN_DATABASE_USERNAME"] %>
   password: <%= ENV["GRAIN_DATABASE_PASSWORD"] %>

@@ -68,7 +68,8 @@ RSpec.describe 'FullMenuQuery', type: :graphql do
 
       # Create modifier for the modifier group
       3.times do |m|
-        create(:modifier, modifier_group:, display_order: m + 1, price_override: Faker::Number.decimal(l_digits: 2), item:)
+        component_item = create(:item, :component, label: "Component Item ##{m + 1}")
+        create(:modifier, modifier_group:, display_order: m + 1, price_override: Faker::Number.decimal(l_digits: 2), item: component_item)
       end
     end
   end
