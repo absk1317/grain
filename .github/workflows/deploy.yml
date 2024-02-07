@@ -24,17 +24,21 @@ jobs:
       with:
         ruby-version: '3.2.2'
 
-    - name: Install dependencies
+    - name: Setup SSH Config
       run: |
-        gem install bundler
-        bundle install
+        mkdir -p ~/.ssh
+        echo -e "Host $DOMAIN\n\tStrictHostKeyChecking no\n\tUser $DEPLOY_USER" >> ~/.ssh/config
+      env:
+        DOMAIN: ${{ secrets.DEPLOY_SERVER }}
+        DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
 
-    - name: Deploy to Production
+    - name: Install dependencies
       env:
         DOMAIN: ${{ secrets.DEPLOY_SERVER }}
         DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
         RAILS_ENV: production
         BRANCH: main
       run: |
-        ssh -o StrictHostKeyChecking=no $DEPLOY_USER@$DOMAIN \
-          'RAILS_ENV=production DOMAIN=${DOMAIN} BRANCH=${BRANCH} bundle exec mina deploy'
+        gem install bundler
+        bundle install
+        RAILS_ENV=production DOMAIN=${DOMAIN} BRANCH=${BRANCH} bundle exec mina deploy
