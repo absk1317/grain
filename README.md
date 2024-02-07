@@ -43,3 +43,41 @@ query AllMenuItems {
   }
 }
 ```
+
+Deployment:
+
+The project is set up with Mina for deployment. The deployment configuration is in `config/deploy.rb`
+
+```bash
+RAILS_ENV=staging DOMAIN=IP_HERE BRANCH=BRANCH_HERE mina deploy
+```
+
+For the time being, I've avoided setting up CI/CD pipeline. But it can be set up using Github Actions or Gitlab CI/CD.
+
+Backup:
+
+1.We can configure backup using `backup` gem. Detailed instructions can be found here: https://adevelopersdiary.com/automated-database-backup-with-ruby-backup-gem/
+
+Logging:
+
+1. Use `lograge` gem for structured logging in JSON format.
+2. Install ELK/Zinc Observe stack on a separate server.
+3. Install filebeat/fluentd on the server to ship logs to ELK stack.
+4. Configure filebeat/fluentd to ship logs to the ELK or the Zinc Observe server.
+
+Loadbalancing:
+Recommend using Nginx as a reverse proxy server for load balancing and SSL termination.
+
+Monitoring:
+
+1. Use NewRelic for application performance monitoring.
+2. Use metabase with ClickHouse or BQ for business intelligence and analytics.
+3. Airflow/Airbyte for ETL and data pipeline.
+
+Database:
+
+1. As the application grows, we can use a managed database service like AWS RDS or Google Cloud SQL.
+2. Use PgBouncer for connection pooling.
+3. Use CloudSQL insights for database performance monitoring.
+4. Use pgtune to optimize the database configuration.
+5. Segregate the database into read and write replicas.
