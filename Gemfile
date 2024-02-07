@@ -16,7 +16,7 @@ gem 'faker'
 
 group :development do
   gem 'annotate'
-  gem 'mina', require: false
+  gem 'mina'
 end
 
 group :development, :test do
