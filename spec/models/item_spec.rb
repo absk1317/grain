@@ -6,7 +6,6 @@ RSpec.describe Item do
   describe 'associations' do
     it { is_expected.to have_many(:item_modifier_groups).dependent(:destroy).inverse_of(:item) }
     it { is_expected.to have_many(:modifier_groups).through(:item_modifier_groups) }
-    it { is_expected.to have_many(:modifiers).inverse_of(:item).dependent(:destroy) }
 
     it { is_expected.to have_many(:section_items).dependent(:destroy).inverse_of(:item) }
     it { is_expected.to have_many(:sections).through(:section_items) }

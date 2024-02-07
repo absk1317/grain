@@ -24,7 +24,7 @@
 
       # Create modifiers for the modifier group
       3.times do |m|
-        FactoryBot.create(:modifier, modifier_group:, display_order: m + 1, price_override: Faker::Number.decimal(l_digits: 2), item:)
+        FactoryBot.create(:modifier, modifier_group:, display_order: m + 1, price_override: Faker::Number.decimal(l_digits: 2), item: FactoryBot.create(:item, :component, label: "Component Item ##{m + 1}"))
       end
     end
   end
