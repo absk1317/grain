@@ -13,6 +13,7 @@ gem 'goldiloader'
 
 group :development do
   gem 'annotate'
+  gem 'mina', require: false
 end
 
 group :development, :test do
