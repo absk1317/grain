@@ -16,10 +16,8 @@ class Item < ApplicationRecord
   scope :components, -> { where(item_type: :component) }
 
   def item_modifier_groups
-    RedisCache.relation_cache(key: "item_#{id}::ItemModifierGroup",
-                              klass: ItemModifierGroup) do
-      super
-    end
+    key = "item_#{id}::ItemModifierGroup"
+    RedisCache.relation_cache(key:, klass: ItemModifierGroup) { super }
   end
 
   def modifier_groups = RedisCache.relation_cache(key: "item_#{id}::ModifierGroup", klass: ModifierGroup) { super }

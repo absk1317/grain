@@ -12,16 +12,13 @@ class SectionItem < ApplicationRecord
   validates :display_order, uniqueness: { scope: :section_id }
 
   def item_modifier_groups
-    RedisCache.relation_cache(key: "section_items_#{id}::ItemModifierGroup",
-                              klass: ItemModifierGroup) do
-      super
-    end
+    key = "section_items_#{id}::ItemModifierGroup"
+    RedisCache.relation_cache(key:, klass: ItemModifierGroup) { super }
   end
 
   def modifier_groups
-    RedisCache.relation_cache(key: "section_items_#{id}::ModifierGroup", klass: ModifierGroup) do
-      super
-    end
+    key = "section_items_#{id}::ModifierGroup"
+    RedisCache.relation_cache(key:, klass: ModifierGroup) { super }
   end
 end
 

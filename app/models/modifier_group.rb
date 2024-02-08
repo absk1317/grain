@@ -10,10 +10,8 @@ class ModifierGroup < ApplicationRecord
   validates :min_selections, numericality: { less_than_or_equal_to: :max_selections }
 
   def item_modifier_groups
-    RedisCache.relation_cache(key: "modifier_group_#{id}::ItemModifierGroup",
-                              klass: ItemModifierGroup) do
-      super
-    end
+    key = "modifier_group_#{id}::ItemModifierGroup"
+    RedisCache.relation_cache(key:, klass: ItemModifierGroup) { super }
   end
 
   def modifiers = RedisCache.relation_cache(key: "modifier_group_#{id}::Modifiers", klass: Modifier) { super }
