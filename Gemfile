@@ -21,7 +21,7 @@ gem 'newrelic_rpm'
 
 # caching
 gem 'mock_redis' # using mock redis instead of redis, to avoid setting up redis in development
-# gem 'redis'
+gem 'redis'
 gem 'connection_pool'
 
 # for seed data
