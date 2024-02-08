@@ -3,6 +3,7 @@ require:
 - rubocop-rspec # https://rubygems.org/gems/rubocop-rspec
 - rubocop-performance
 - rubocop-graphql # https://rubygems.org/gems/rubocop-graphql
+- rubocop-factory_bot # https://rubygems.org/gems/rubocop-factory_bot
 
 AllCops:
   NewCops: enable
