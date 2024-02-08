@@ -10,6 +10,16 @@ class SectionItem < ApplicationRecord
   validates :section_id, uniqueness: { scope: :item_id }
   validates :display_order, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :display_order, uniqueness: { scope: :section_id }
+
+  def item_modifier_groups
+    key = "section_items_#{id}::ItemModifierGroup"
+    RedisCache.relation_cache(key:, klass: ItemModifierGroup) { super }
+  end
+
+  def modifier_groups
+    key = "section_items_#{id}::ModifierGroup"
+    RedisCache.relation_cache(key:, klass: ModifierGroup) { super }
+  end
 end
 
 # == Schema Information

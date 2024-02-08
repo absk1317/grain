@@ -8,6 +8,9 @@ class MenuSection < ApplicationRecord
   has_many :items, through: :section_items
 
   validates :section_id, uniqueness: { scope: :menu_id }
+
+  def section_items = RedisCache.relation_cache(key: "menu_section_#{id}::SectionItem", klass: SectionItem) { super }
+  def items = RedisCache.relation_cache(key: "menu_section_#{id}::Item", klass: Item) { super }
 end
 
 # == Schema Information

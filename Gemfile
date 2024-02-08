@@ -20,14 +20,15 @@ gem 'sentry-rails'
 gem 'newrelic_rpm'
 
 # caching
+gem 'mock_redis' # using mock redis instead of redis, to avoid setting up redis in development
 gem 'redis'
-gem 'identity_cache'
-gem 'cityhash' # for faster hashing
-gem 'dalli'
+gem 'connection_pool'
 
 # for seed data
 gem 'factory_bot_rails'
 gem 'faker'
+
+gem 'active_record_query_trace'
 
 group :development do
   gem 'annotate'
@@ -52,6 +53,7 @@ end
 group :test do
   gem 'database_cleaner'
   gem 'json-schema'
+  # gem 'mock_redis' # using mock redis instead of redis, to avoid setting up redis in development
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
 end
