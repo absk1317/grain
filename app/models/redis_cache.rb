@@ -65,7 +65,7 @@ class RedisCache
       return data unless klass
 
       stale_keys = data.map { |attrs| "#{klass}::#{attrs['id']}::stale" }
-      stale_values = find_all(*stale_keys)
+      stale_values = find_all(stale_keys)
       # if any of the stale values are present, then the relation is stale
       if stale_values.any?
         REDIS.with { |conn| conn.del(*stale_keys) }
@@ -87,13 +87,16 @@ class RedisCache
         return
       end
 
-      record.instance_variable_set(:@new_record, false) # This is to make sure that the record is not treated as new record
+      # This is to make sure that the record is not treated as new record
+      record.instance_variable_set(:@new_record, false)
       record
     end
 
-    def find_all(*)
+    def find_all(args)
       values = []
-      REDIS.with { |conn| values = conn.mget(*) }
+      return values if args.blank?
+
+      REDIS.with { |conn| values = conn.mget(args) }
       values.map { |value| parsed_data(value) }
     end
   end

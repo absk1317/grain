@@ -19,7 +19,7 @@ class ApplicationRecord < ActiveRecord::Base
       # Till then, we are not clearing cache for has_many through and has_many associations
       # It will be auto cleaned up after 30 seconds
       # ALso cleanup on record destroy is not working
-      RedisCache.dump("#{association.klass}::#{send(association.foreign_key)}::stale", true, :infinity)
+      # RedisCache.dump("#{association.klass}::#{send(association.foreign_key)}::stale", true, :infinity)
     end
   end
 end
